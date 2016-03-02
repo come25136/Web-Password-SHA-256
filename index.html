@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>WebPassword</title>
+
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="sha.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+            $('#password').keyup(function(e){
+                var pass = $("#password").val() + 'pas25136';
+                //$("#sha-256").html('押されたキーコード' + e.keyCode);
+                var shaObj = new jsSHA("SHA-256", "TEXT");
+                shaObj.update(pass);
+                var hash = shaObj.getHash("HEX");
+                $("#sha-256").text(hash);
+                console.log(pass);
+            });
+        })
+    </script>
+
+    <from>
+        <input type="text" id="password" placeholder="password">
+    </from>
+    <div id="sha-256"></div>
+</body>
+</html>
